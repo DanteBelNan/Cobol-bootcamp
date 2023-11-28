@@ -1,5 +1,5 @@
       IDENTIFICATION DIVISION.
-      PROGRAM-ID. estructura_basica.
+      PROGRAM-ID. N00BASE.
       
       DATA DIVISION.
       FILE SECTION.

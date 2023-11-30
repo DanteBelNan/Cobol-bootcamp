@@ -1,0 +1,37 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. N00BASE.
+      
+       DATA DIVISION.
+       FILE SECTION.
+       FD ARCHIVO-ENTRADA.
+       01 REGISTRO-ENTRADA.
+       05 NUMERO PIC 9(2).
+      
+       WORKING-STORAGE SECTION.
+       01 CONTADOR PIC 9(2).
+      
+       PROCEDURE DIVISION.
+      
+       MAIN-PROCEDURE.
+      
+       OPEN INPUT ARCHIVO-ENTRADA.
+      
+       SET CONTADOR TO 0.
+      
+       LEER ARCHIVO-ENTRADA INTO REGISTRO-ENTRADA.
+      
+       WHILE NOT EOF(ARCHIVO-ENTRADA)
+      
+       DO.
+      
+       INCREASE CONTADOR BY 1.
+      
+       DISPLAY "El número es: " NUMERO.
+      
+       LEER ARCHIVO-ENTRADA INTO REGISTRO-ENTRADA.
+      
+       END-WHILE.
+      
+       CLOSE ARCHIVO-ENTRADA.
+      
+       STOP RUN.

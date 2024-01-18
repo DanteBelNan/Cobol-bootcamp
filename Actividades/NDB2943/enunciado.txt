@@ -1,0 +1,3 @@
+Crear un programa que analice la tabla EMP y grabe los registros con empleo igual a CLERK, los campos deberan ser los mismos que el ejercicio anterior. 
+Se debe agregar una columna que sume el salario con el bonus de cada usuario. 
+Al final mostrar el total de todas las sumas de bonus+salario.

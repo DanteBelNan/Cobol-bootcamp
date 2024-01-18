@@ -1,0 +1,10 @@
+Crear un programa que extraiga de la tabla EMP todos los registros cuya area de trabajo sea CLERK grabarlos en un registro de salida QSAM y al final mostrar el promedio de salarios. Los campos a imprimir son: 
+EMPNO
+FIRSTNAME
+LASTNAME
+WORKDEPT
+PHONENO
+BIRTHDATE
+JOB 
+SALARIO
+BONUS 

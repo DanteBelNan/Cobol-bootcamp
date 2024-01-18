@@ -1,15 +1,67 @@
-name: Generated ZAPP document
-description: >-
-  Note, that this default file will search all your local folders in all your
-  open VS Code workspaces and can be highly inefficient. Modify the "locations"
-  entries to be as specific as possible. Add a new entry of type "MVS" to
-  specify remote locations. See the user documentation for more details:
-  https://ibm.github.io/zopeneditor-about/Docs/setting_propertygroup.html
-author: IBM Z Open Editor
+name: zos-zapp
+description: Demo - Instalación IBM z/os Neoris
+version: 3.2.0
+author:
+  name: NEORIS
+ 
 propertyGroups:
-  - name: search-all
+  - name: cobol-local
+    language: cobol
     libraries:
       - name: syslib
         type: local
         locations:
-          - '**'
+          - "**/cpy"
+          - "**/dcl"
+      - name: syslib
+        type: mvs
+        locations:
+          - BZU.SBZUSAMP
+          - ZDEVOPS.BASE.CPY
+          - ZDEVOPS.BASE.MPC
+          - NEOS001.BUILD.MPC
+          - CICSTS.V6R1M0.CICS.SDFHCOB
+profiles:
+   - name: RSE-Mappings
+     type: rseapi
+     settings:
+       mappings:
+         - resource: "ZDEVOPS.PROD.CPY"
+           extension: cpy
+           transfer: text
+           encoding: IBM-037
+           memberMappings:
+             - extension: dat
+               transfer: binary
+               resource: "*DAT"
+         - resource: "ZDEVOPS.PROD.SRC"
+           extension: cbl
+           transfer: text
+           encoding: IBM-037
+           memberMappings:
+             - extension: dat
+               transfer: binary
+               resource: "*DAT"      
+       default.encoding: IBM-037
+ 
+   - name: dbb-userbuild
+     type: dbb
+     settings:
+       application: codigo-cobol
+       command: "$DBB_HOME/bin/groovyz -DBB_DAEMON_HOST 127.0.0.1 -DBB_DAEMON_PORT 8180"
+       buildScriptPath: "$ZAPPBUILD_HOME/build.groovy"
+       buildScriptArgs:
+         - "--userBuild"
+         - "--workspace ${zopeneditor.userbuild.userSettings.dbbWorkspace}"
+         - "--application ${application}"
+         - "--hlq ${zopeneditor.userbuild.userSettings.dbbHlq}"
+         - "--outDir ${zopeneditor.userbuild.userSettings.dbbLogDir}"
+         - "--debug"
+         - "--verbose"
+       additionalDependencies:
+         - application-conf
+         - "zapp*"
+       logFilePatterns:
+         - "${buildFile.basename}.log"
+         - "BuildReport.*"
+         - "buildList.txt"
